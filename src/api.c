@@ -14,7 +14,8 @@ const char* printKernelVersion() {
 		return NULL;
 	}
 
-	return bprintf("%s", udata.release);
+	//return bprintf("%s", udata.release);
+	return "lol";
 }
 
 void getAceOsVersion() {

@@ -8,4 +8,4 @@ PREFIX=/usr
 LIBPREFIX=$(PREFIX)/lib
 INCLUDEPREFIX=$(PREFIX)/include
 
-CFLAGS = -Wall -Wextra -Iinclude -DVERSION=\"$(VERSION)\"
+CFLAGS = -Wall -Wextra -Iinclude -lX11 -DVERSION=\"$(VERSION)\"
