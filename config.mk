@@ -1,16 +1,11 @@
-# ACElib Version
+# libACE Version
 VERSION = 0.1.0
 
 # Default Compiler
-CC = tcc
+CC = gcc
 
-PKG_CONFIG = pkg-config
+PREFIX=/usr
+LIBPREFIX=$(PREFIX)/lib
+INCLUDEPREFIX=$(PREFIX)/include
 
-# Includes and libs
-INCS = -Iinclude \
-       `$(PKG_CONFIG) gtk+-3.0 --cflags`
-LIBS = `$(PKG_CONFIG) gtk+-3.0 --libs`
-
-# Flags
-CPPFLAGS = -Wall -Wextra -DVERSION=\"$(VERSION)\" $(INCS)
-CFLAGS = $(LIBS)
+CFLAGS = -Wall -Wextra -Iinclude -DVERSION=\"$(VERSION)\"

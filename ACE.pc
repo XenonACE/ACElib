@@ -1,4 +1,4 @@
-prefix=/usr/local
+prefix=/usr
 exec_prefix=${prefix}
 includedir=${prefix}/include
 libdir=${exec_prefix}/lib
@@ -7,4 +7,4 @@ Name: ACE Utils
 Description: ACE OS Application Utilities
 Version: 0.1.0
 Cflags: -I${includedir}
-Libs: -L${libdir} -lacelib
+Libs: -L${libdir} -lace

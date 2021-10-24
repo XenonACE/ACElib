@@ -1,22 +1,24 @@
+# Xenon API
+
 include config.mk
 
-SOURCES = src/app.c src/api.c
+SOURCES = src/flow.c src/api.c
 OBJECTS = $(SOURCES:.c=.o)
 
-all: acelib
+all: libace
 
 .c.o:
-	$(CC) $(CPPFLAGS) -o $@ -c -fPIC $<
+	$(CC) -c $(CFLAGS) -o $@ -c -fpic $^
 
-acelib: $(OBJECTS)
-	$(CC) -shared -o $@.so $(CPPFLAGS) $(CFLAGS) $(OBJECTS)
+libace: $(OBJECTS)
+	$(CC) -shared -o $@.so $(CFLAGS) $(OBJECTS)
 
-.PHONY: clean install
+.PHONY: install clean
+
+install: libace
+	cp -f libace.so $(LIBPREFIX)
+	cp -f include/ACE.h $(INCLUDEPREFIX)
+	cp -f ./ACE.pc /usr/share/pkgconfig/
 
 clean:
-	rm -f acelib.so $(OBJECTS)
-
-install: acelib
-	cp -f acelib.so /usr/local/lib
-	cp -f include/ACE.h /usr/local/include
-	cp -f ./ACE.pc /usr/share/pkgconfig/
+	rm -rf libace.so $(OBJECTS)
