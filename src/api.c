@@ -1,30 +1,54 @@
 #include <ACE.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/utsname.h>
 
-void printVersion() {
-	printf(VERSION"\n");
+const char* getVersion() {
+	return VERSION;
 }
 
-const char* printKernelVersion() {
-	struct utsname udata;
+void die(char* msg) {
+	fprintf(stderr, "ERROR: %s\n", msg);
+}
 
-	if (uname(&udata) < 0) {
-		printf("uname\n");
-		return NULL;
+char* putFileInString(char* fp) {
+	char* storagebuffer = 0;
+	long length;
+	FILE* file = fopen(fp, "rb");
+
+	if (file) {
+		fseek(file, 0, SEEK_END);
+		length = ftell(file);
+		fseek(file, 0, SEEK_SET);
+		storagebuffer = malloc(length);
+		if (storagebuffer) {
+			fread(storagebuffer, 1, length, file);
+		}
+		fclose(file);
+	} else {
+		die("Unable to open file");
 	}
 
-	//return bprintf("%s", udata.release);
-	return "lol";
+	fclose(file);
+
+	return storagebuffer;
 }
 
-void getAceOsVersion() {
-	//TODO: read version from some file in /opt/Xenon
+void printKernelVersion() {
+	struct utsname unameData;
+	uname(&unameData);
+	return unameData.release;
 }
 
-void getAceOsBranch() {
-	//TODO:
+void parseSecFile(char *data) {}
+
+const char* getAceOsVersion() {
+	return putFileInString("/etc/Xenon/release");
+}
+
+const char* getAceOsBranch() {
 	//Possible: LTS, stable(production), nightly, classified
+	return putFileInString("/etc/Xenon/branch");
 }
 
 void getScreenResolution() {
