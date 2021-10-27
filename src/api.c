@@ -37,7 +37,7 @@ char* putFileInString(char* fp) {
 void printKernelVersion() {
 	struct utsname unameData;
 	uname(&unameData);
-	return unameData.release;
+	printf("%s\n", unameData.release);
 }
 
 void parseSecFile(char *data) {}
@@ -51,16 +51,16 @@ const char* getAceOsBranch() {
 	return putFileInString("/etc/Xenon/branch");
 }
 
-void getScreenResolution() {
-	//TODO: Some Xorg implementation
-}
-
 void createToast(char* text) {
 	//TODO: Launch an X program that does this
 }
 
 void createSnackbar(char* text) {
 	//TODO: Launch an X program that does this
+}
+
+void getTheme() {
+	char* themeData = putFileInString("/etc/Xenon/theme");
 }
 
 void SUDOSleep() {

@@ -1,0 +1,38 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-DVERSION=\"0.1.0\"",
+      "-c",
+      "-fpic",
+      "-o",
+      "src/flow.o",
+      "src/flow.c"
+    ],
+    "directory": "/home/vince/Projects/acelib",
+    "file": "/home/vince/Projects/acelib/src/flow.c",
+    "output": "/home/vince/Projects/acelib/src/flow.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-DVERSION=\"0.1.0\"",
+      "-c",
+      "-fpic",
+      "-o",
+      "src/api.o",
+      "src/api.c"
+    ],
+    "directory": "/home/vince/Projects/acelib",
+    "file": "/home/vince/Projects/acelib/src/api.c",
+    "output": "/home/vince/Projects/acelib/src/api.o"
+  }
+]

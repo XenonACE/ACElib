@@ -5,16 +5,20 @@
 #define NULL 0 // If main program doesn't include stdlib
 #endif
 
+#define DARKTHEME 3333
+#define LIGHTTHEME 4444
+
 // Default title font
 //#define DTFONT "-misc-montserrat-bold-r-normal--0-0-0-0-p-0-ascii-0"
 // Default font
 //#define DFONT "-misc-overpass-medium-r-normal--0-0-0-0-p-0-ascii-0"
 
 const char* getVersion();
-void getKernelVersion();
+void printKernelVersion();
 const char* getAceOsVersion();
 const char* getAceOsBranch();
-void getScreenResolution();
+// getScreenWidth()
+// getScreenHeight()
 void createToast(char* text);
 void createSnackbar(char* text);
 void SUDOSleep();
