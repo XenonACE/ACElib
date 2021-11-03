@@ -9,9 +9,9 @@
 #define LIGHTTHEME 4444
 
 // Default title font
-//#define DTFONT "-misc-montserrat-bold-r-normal--0-0-0-0-p-0-ascii-0"
+#define DTFONT(size) "-misc-montserrat-bold-r-normal--"size"-120-0-0-p-0-ascii-0"
 // Default font
-//#define DFONT "-misc-overpass-medium-r-normal--0-0-0-0-p-0-ascii-0"
+#define DFONT(size) "-misc-overpass-medium-r-normal--"size"-120-0-0-p-0-ascii-0"
 
 const char* getVersion();
 void printKernelVersion();
