@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/utsname.h>
+#include <string.h>
 
 const char* getVersion() {
 	return VERSION;
@@ -59,8 +60,31 @@ void createSnackbar(char* text) {
 	//TODO: Launch an X program that does this
 }
 
-void getTheme() {
-	char* themeData = putFileInString("/etc/Xenon/theme");
+char* getTheme() {
+	/*char* themeData = putFileInString("/etc/Xenon/theme");
+	
+	int darkthemeEnabled = atoi(themeData);
+
+	if (darkthemeEnabled) {
+		return DARKTHEME;
+	} else {
+		return LIGHTTHEME;
+	}*/
+	return putFileInString("/etc/Xenon/theme");
+}
+
+int getBgColor() {
+	if (getTheme() == DARKTHEME)
+		return DARKBGCOLOR;
+	else // Light Theme
+		return LIGHTBGCOLOR;
+}
+
+int getFgColor() {
+	if (getTheme() == DARKTHEME)
+		return DARKFGCOLOR;
+	else // Light Theme
+		return LIGHTFGCOLOR;
 }
 
 void SUDOSleep() {

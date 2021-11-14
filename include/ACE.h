@@ -5,6 +5,13 @@
 #define NULL 0 // If main program doesn't include stdlib
 #endif
 
+// Default system defined application colors
+#define DARKBGCOLOR 0x222222
+#define DARKFGCOLOR 0xFFFFFF
+
+#define LIGHTBGCOLOR 0xFFFFFF
+#define LIGHTFGCOLOR 0x000000
+
 #define DARKTHEME 3333
 #define LIGHTTHEME 4444
 
@@ -21,6 +28,9 @@ const char* getAceOsBranch();
 // getScreenHeight()
 void createToast(char* text);
 void createSnackbar(char* text);
+char* getTheme();
+int getBgColor();
+int getFgColor();
 void SUDOSleep();
 void SUDOWake();
 void SUDOExitApplication();
