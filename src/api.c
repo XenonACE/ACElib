@@ -10,6 +10,7 @@ const char* getVersion() {
 
 void die(char* msg) {
 	fprintf(stderr, "ERROR: %s\n", msg);
+	exit(1);
 }
 
 char* putFileInString(char* fp) {
@@ -35,6 +36,19 @@ char* putFileInString(char* fp) {
 	return storagebuffer;
 }
 
+char* newputFileInString(char* fp) {
+	char ch;
+	char outstring[1024];
+	FILE* file = fopen(fp, "r");
+
+	if (file == NULL)
+		die("Unable to open file");
+
+	while ((ch = fgetc(file)) != EOF)
+		strcat(outstring, ch);
+
+}
+
 void printKernelVersion() {
 	struct utsname unameData;
 	uname(&unameData);
@@ -44,12 +58,12 @@ void printKernelVersion() {
 void parseSecFile(char *data) {}
 
 const char* getAceOsVersion() {
-	return putFileInString("/etc/Xenon/release");
+	return putFileInString("/opt/Xenon/release");
 }
 
 const char* getAceOsBranch() {
 	//Possible: LTS, stable(production), nightly, classified
-	return putFileInString("/etc/Xenon/branch");
+	return putFileInString("/opt/Xenon/branch");
 }
 
 void createToast(char* text) {
