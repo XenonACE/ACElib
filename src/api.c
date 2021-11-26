@@ -13,40 +13,29 @@ void die(char* msg) {
 	exit(1);
 }
 
-char* putFileInString(char* fp) {
-	char* storagebuffer = 0;
-	long length;
-	FILE* file = fopen(fp, "rb");
+static void charToStr(char ch, char string[2]) {
+	string[0] = ch;
+	string[1] = '\0';
+}
 
-	if (file) {
-		fseek(file, 0, SEEK_END);
-		length = ftell(file);
-		fseek(file, 0, SEEK_SET);
-		storagebuffer = malloc(length);
-		if (storagebuffer) {
-			fread(storagebuffer, 1, length, file);
-		}
-		fclose(file);
-	} else {
-		die("Unable to open file");
+// Returns 0 on success, 1 on failure
+int putFileInString(char* fp, char content[]) { 
+	char ch;
+	FILE* file = fopen(fp, "r");
+
+	if (file == NULL)
+		return 1;
+
+	while ((ch = fgetc(file)) != EOF) {
+		char fakeChar[2];
+		charToStr(ch, fakeChar);
+
+		strcat(content, fakeChar);
 	}
 
 	fclose(file);
 
-	return storagebuffer;
-}
-
-char* newputFileInString(char* fp) {
-	char ch;
-	char outstring[1024];
-	FILE* file = fopen(fp, "r");
-
-	if (file == NULL)
-		die("Unable to open file");
-
-	while ((ch = fgetc(file)) != EOF)
-		strcat(outstring, ch);
-
+	return 0;
 }
 
 void printKernelVersion() {
@@ -57,13 +46,19 @@ void printKernelVersion() {
 
 void parseSecFile(char *data) {}
 
+void printAceOsVersion() {
+	char contents[512];
+	putFileInString("/opt/Xenon/release", contents);
+	printf("%s", contents);
+}
+
 const char* getAceOsVersion() {
-	return putFileInString("/opt/Xenon/release");
+	//return putFileInString("/opt/Xenon/release");
 }
 
 const char* getAceOsBranch() {
 	//Possible: LTS, stable(production), nightly, classified
-	return putFileInString("/opt/Xenon/branch");
+	//return putFileInString("/opt/Xenon/branch");
 }
 
 void createToast(char* text) {
@@ -74,8 +69,9 @@ void createSnackbar(char* text) {
 	//TODO: Launch an X program that does this
 }
 
-char* getTheme() {
-	/*char* themeData = putFileInString("/etc/Xenon/theme");
+int getTheme() {
+	char themeData[4]; // Little more memory than required
+	putFileInString("/etc/Xenon/theme", themeData);
 	
 	int darkthemeEnabled = atoi(themeData);
 
@@ -83,8 +79,7 @@ char* getTheme() {
 		return DARKTHEME;
 	} else {
 		return LIGHTTHEME;
-	}*/
-	return putFileInString("/etc/Xenon/theme");
+	}
 }
 
 int getBgColor() {

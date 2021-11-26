@@ -22,13 +22,14 @@
 
 const char* getVersion();
 void printKernelVersion();
+void printAceOsVersion();
 const char* getAceOsVersion();
 const char* getAceOsBranch();
 // getScreenWidth()
 // getScreenHeight()
 void createToast(char* text);
 void createSnackbar(char* text);
-char* getTheme();
+int getTheme();
 int getBgColor();
 int getFgColor();
 void SUDOSleep();
