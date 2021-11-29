@@ -21,6 +21,7 @@
 #define DFONT(size) "-misc-overpass-medium-r-normal--"size"-120-0-0-p-0-ascii-0"
 
 const char* getVersion();
+int putFileInString(char* fp, char content[]);
 void printKernelVersion();
 void printAceOsVersion();
 const char* getAceOsVersion();
