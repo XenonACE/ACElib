@@ -4,8 +4,7 @@ VERSION = 0.1.0
 # Default Compiler
 CC = gcc
 
-PREFIX=/usr
-LIBPREFIX=$(PREFIX)/lib
-INCLUDEPREFIX=$(PREFIX)/include
+PREFIX=/usr/lib
+INCLUDEPREFIX=/usr/include
 
 CFLAGS = -Wall -Wextra -Iinclude -lX11 -DVERSION=\"$(VERSION)\"

@@ -16,9 +16,12 @@ libace: $(OBJECTS)
 .PHONY: install clean
 
 install: libace
-	cp -f libace.so $(LIBPREFIX)
-	cp -f include/ACE.h $(INCLUDEPREFIX)
-	cp -f ./ACE.pc /usr/share/pkgconfig/
+	mkdir -p $(DESTDIR)$(PREFIX)
+	mkdir -p $(DESTDIR)$(INCLUDEPREFIX)
+	mkdir -p $(DESTDIR)/usr/share/pkgconfig
+	cp -f libace.so $(DESTDIR)$(PREFIX)
+	cp -f include/ACE.h $(DESTDIR)$(INCLUDEPREFIX)
+	cp -f ./ACE.pc $(DESTDIR)/usr/share/pkgconfig
 
 clean:
 	rm -rf libace.so $(OBJECTS)
